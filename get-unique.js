@@ -1,4 +1,17 @@
+// set
+const getUnique = (arr) => {
+  const unicue = [];
+  const seen = new Set();
 
+  for (let i = 0; i < arr.length; i++) {
+    if (!seen.has(arr[i])) {
+      seen.add(arr[i]);
+      unicue.push(arr[i]);
+    }
+  }
 
+  return unicue;
+};
 
-getUnique([1, 2, 2, 3, 4, 4, 5])
+const friends = ['Алекс', 'Мария', 'Алекс', 'Иван', 'Мария'];
+console.log(getUnique(friends));

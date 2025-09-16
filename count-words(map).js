@@ -5,13 +5,13 @@ const countWords = (str) => {
 
   for (let i = 0; i < words.length; i++) {
     if (map.has(words[i])) {
-      map.set(words[i], map.get(words[i]) + 1)
+      map.set(words[i], map.get(words[i]) + 1);
     } else {
-      map.set(words[i], 1)
+      map.set(words[i], 1);
     }
   }
 
-  return map
+  return map;
 };
 
 // const countWords = (str) => {

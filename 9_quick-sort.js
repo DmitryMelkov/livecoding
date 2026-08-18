@@ -9,7 +9,7 @@ const quickSort = (arr) => {
   const right = [];
 
   for (let i = 0; i < arr.length; i++) {
-    if (arr[i] === pivotIndex) {
+    if (arr[i] === pivot) {
       continue;
     }
 

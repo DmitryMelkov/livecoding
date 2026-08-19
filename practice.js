@@ -163,4 +163,45 @@ const areAnagrams = (s, t) => {
     return false;
   }
 };
-console.log(areAnagrams('tok', 'tok'));
+console.log('через строковые методы: ', areAnagrams('tok', 'tok'));
+
+// через хэш таблицу
+
+const areAnagramsHash = (s, t) => {
+  if (s.length !== t.length) {
+    return false;
+  }
+
+  const count = {};
+
+  for (char of s) {
+    count[char] = (count[char] || 0) + 1;
+  }
+
+  for (const char of t) {
+    if (!count[char]) {
+      return false;
+    }
+
+    count[char]--;
+  }
+
+  return true;
+};
+
+console.log('результат:', areAnagramsHash('tok', 'kofgt'));
+
+// Дан массив целых чисел nums и число target. Верни индексы двух чисел, сумма которых равна target.
+// nums = [2, 7, 11, 15], target = 9  → [0, 1]   // 2 + 7 = 9
+// nums = [3, 2, 4],     target = 6  → [1, 2]   // 2 + 4 = 6
+
+const twoSum = (arr, target) => {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === target) {
+        return [i, j];
+      }
+    }
+  }
+};
+console.log(twoSum([2, 7, 11, 15], 9));

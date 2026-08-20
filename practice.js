@@ -197,7 +197,7 @@ console.log('результат:', areAnagramsHash('tok', 'kofgt'));
 
 const twoSum = (arr, target) => {
   for (let i = 0; i < arr.length; i++) {
-    for (let j = 1; j < arr.length; j++) {
+    for (let j = i + 1; j < arr.length; j++) {
       if (arr[i] + arr[j] === target) {
         return [i, j];
       }
@@ -205,3 +205,44 @@ const twoSum = (arr, target) => {
   }
 };
 console.log(twoSum([2, 7, 11, 15], 9));
+
+// On
+const twoSumMap = (arr, target) => {
+  const map = new Map();
+
+  for (let i = 0; i < arr.length; i++) {
+    const complement = target - arr[i];
+
+    if (map.has(complement)) {
+      return [map.get(complement), i];
+    }
+
+    map.set(arr[i], i);
+  }
+};
+
+console.log(twoSumMap([32, 12, 7, 6, 11, 3, 15, 2], 9));
+
+// Валидный палиндром
+// Фраза является палиндромом, если она читается одинаково слева направо и справа налево.
+// При проверке нужно учитывать только буквы и цифры, а на регистр (большие/маленькие буквы)
+// не обращать внимания. Все пробелы и знаки препинания игнорируем.
+// Нужно вернуть true, если строка — палиндром, и false, если нет.
+// Ввод: s = "A man, a plan, a canal: Panama"
+// Вывод: true
+// Объяснение: Если убрать знаки и пробелы, получится "amanaplanacanalpanama". Читается одинаково в обе стороны.
+// Ввод: s = "race a car"
+// Вывод: false
+// Объяснение: Без пробелов "raceacar". Спереди "r", сзади "r", но дальше "a" и "a", потом "c" и "c", а потом "e" и "a". Не равно!
+
+const isPalindrome = (str) => {
+  const cleaned = str.split(' ').join('').toLowerCase();
+  console.log(cleaned);
+
+  const reversed = cleaned.split('').reverse().join('');
+  console.log(reversed);
+
+  return cleaned === reversed;
+};
+
+console.log(isPalindrome('A man, a plan, a canal: Panama'));

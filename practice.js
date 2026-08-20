@@ -237,12 +237,24 @@ console.log(twoSumMap([32, 12, 7, 6, 11, 3, 15, 2], 9));
 
 const isPalindrome = (str) => {
   const cleaned = str.split(' ').join('').toLowerCase();
-  console.log(cleaned);
-
-  const reversed = cleaned.split('').reverse().join('');
-  console.log(reversed);
-
+  const reversed = cleaned.split(' ').reverse().join('');
   return cleaned === reversed;
 };
 
-console.log(isPalindrome('A man, a plan, a canal: Panama'));
+console.log(isPalindrome('race A car'));
+
+const isPalindromeWhile = (str) => {
+  let left = 0;
+  let right = str.length - 1;
+
+  while (left <= right) {
+    if (str[left].toLowerCase() !== str[right].toLowerCase()) {
+      return false
+    }
+    left++
+    right--
+  }
+  return true
+};
+
+console.log(isPalindromeWhile('коКок'));

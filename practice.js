@@ -249,12 +249,48 @@ const isPalindromeWhile = (str) => {
 
   while (left <= right) {
     if (str[left].toLowerCase() !== str[right].toLowerCase()) {
-      return false
+      return false;
     }
-    left++
-    right--
+    left++;
+    right--;
   }
-  return true
+  return true;
 };
 
 console.log(isPalindromeWhile('коКок'));
+
+// Дан массив prices, где prices[i] — это цена акции на i-й день.
+// Ты хочешь получить максимальную прибыль. Ты можешь совершить максимум одну сделку:
+// Купить акцию в один день
+// Продать её в какой-то другой день позже (нельзя продать раньше, чем купил)
+// Верни максимальную возможную прибыль. Если прибыль получить нельзя — верни 0.
+// Ввод: prices = [7, 1, 5, 3, 6, 4]
+// Вывод: 5
+// Объяснение: Покупаем в день 1 (цена = 1), продаём в день 4 (цена = 6).
+// Прибыль = 6 - 1 = 5
+
+const maxProfit = (arr) => {
+  if (arr.length === 0) {
+    return false;
+  }
+
+  let minPrice = arr[0];
+  let maxProfit = 0;
+
+  for (let i = 1; i < arr.length; i++) {
+    let currentPrice = arr[i];
+    let currentProfit = currentPrice - minPrice;
+
+    if (currentProfit > maxProfit) {
+      maxProfit = currentProfit;
+    }
+
+    if (currentPrice < minPrice) {
+      minPrice = currentPrice;
+    }
+  }
+
+  return maxProfit;
+};
+
+console.log(maxProfit([5, 4, 1, 2, 3]));

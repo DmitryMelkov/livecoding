@@ -294,3 +294,36 @@ const maxProfit = (arr) => {
 };
 
 console.log(maxProfit([5, 4, 1, 2, 3]));
+
+
+// Дан массив целых чисел nums и целое число k.
+// Найди подмассив длины k с максимальным средним
+//  значением и верни это среднее.
+// Ввод: nums = [1, 12, -5, -6, 50, 3], k = 4
+// Вывод: 12.75
+// Объяснение:
+// - Подмассив [1, 12, -5, -6] → среднее = 2/4 = 0.5
+// - Подмассив [12, -5, -6, 50] → среднее = 51/4 = 12.75 ✅
+// - Подмассив [-5, -6, 50, 3] → среднее = 42/4 = 10.5
+// Максимальное среднее = 12.75
+
+const findMaxAverage = (arr, k) => {
+  let maxSum = 0;
+
+  for (let i = 0; i < k; i++) {
+    maxSum += arr[i]
+  }
+
+  let currentSum = maxSum;
+
+  for (let i = k; i < arr.length; i++) {
+    currentSum += arr[i] - arr[i - k];
+    maxSum = Math.max(maxSum, currentSum);
+  }
+
+  return maxSum / k;
+}
+
+console.log(findMaxAverage([1, 12, -5, -6, 50, 3], 4));
+
+

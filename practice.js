@@ -295,7 +295,6 @@ const maxProfit = (arr) => {
 
 console.log(maxProfit([5, 4, 1, 2, 3]));
 
-
 // Дан массив целых чисел nums и целое число k.
 // Найди подмассив длины k с максимальным средним
 //  значением и верни это среднее.
@@ -311,7 +310,7 @@ const findMaxAverage = (arr, k) => {
   let maxSum = 0;
 
   for (let i = 0; i < k; i++) {
-    maxSum += arr[i]
+    maxSum += arr[i];
   }
 
   let currentSum = maxSum;
@@ -322,8 +321,82 @@ const findMaxAverage = (arr, k) => {
   }
 
   return maxSum / k;
-}
+};
 
 console.log(findMaxAverage([1, 12, -5, -6, 50, 3], 4));
 
+// Дана строка s, содержащая только символы '(', ')', '{', '}', '[' и ']'.
+// Определи, является ли строка валидной.
+// Строка валидна, если:
+// Открытые скобки должны быть закрыты скобками того же типа
+// Открытые скобки должны быть закрыты в правильном порядке
+// Каждая закрывающая скобка должна иметь соответствующую открывающую скобку того же типа
+// Ввод: s = "()"
+// Вывод: true
+
+// Ввод: s = "()[]{}"
+// Вывод: true
+
+// Ввод: s = "(]"
+// Вывод: false
+
+// Ввод: s = "([)]"
+// Вывод: false
+
+// Ввод: s = "{[]}"
+// Вывод: true
+
+const isValidStr = (s) => {
+  const stack = [];
+  const brackets = {
+    '(': ')',
+    '{': '}',
+    '[': ']',
+  };
+
+  for (const char of s) {
+    if (brackets[char]) {
+      stack.push(char);
+    } else {
+      const last = stack.pop();
+      if (brackets[last] !== char) {
+        return false;
+      }
+    }
+  }
+
+  return stack.length === 0;
+};
+
+console.log(isValidStr('()[({})()]{}'));
+
+// Дана матрица accounts, где accounts[i][j] — это
+// деньги i-го клиента в j-м банке.
+// Богатство клиента = сумма всех его денег
+// во всех банках (сумма строки).
+// Верни богатство самого богатого клиента.
+// Ввод: accounts = [[1,2,3],[3,2,1]]
+// Вывод: 6
+// Объяснение: Клиент 0: 1+2+3=6,
+// Клиент 1: 3+2+1=6. Максимум = 6
+
+const maximumWealth = (accounts) => {
+  let maxWealth = 0;
+
+  for (let i = 0; i < accounts.length; i++) {
+    let sum = 0;
+
+    for (let j = 0; j < accounts[i].length; j++) {
+      sum += accounts[i][j]; 
+    }
+
+    if (sum > maxWealth) {
+      maxWealth = sum;
+    }
+  }
+
+  return maxWealth;
+};
+
+console.log(maximumWealth([[1, 2, 3], [3, 2, 1], [4, 5, 6]]));
 
